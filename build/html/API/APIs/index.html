@@ -1,0 +1,662 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dingraia APIs &mdash; Dingraia Document v1.0 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5a3fd9cb"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="prev" title="功能一览" href="../Summary/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Dingraia Document
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Introduce/index.html">Introduce</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API usage guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Summary/index.html">功能一览</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Dingraia APIs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">注意事项</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#init"><code class="docutils literal notranslate"><span class="pre">__init__</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">示例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#send-message"><code class="docutils literal notranslate"><span class="pre">send_message</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">额外需求</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">返回值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">示例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sendmessage"><code class="docutils literal notranslate"><span class="pre">sendMessage</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recall-message"><code class="docutils literal notranslate"><span class="pre">recall_message</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">额外需求</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">返回值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">示例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#send-ding"><code class="docutils literal notranslate"><span class="pre">send_ding</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id12">注意事项</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">额外需求</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">返回值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">示例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#send-card"><code class="docutils literal notranslate"><span class="pre">send_card</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id17">额外需求</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">返回值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id20">示例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#send-markdown-card"><code class="docutils literal notranslate"><span class="pre">send_markdown_card</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id21">额外需求</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id22">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23">返回值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24">示例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#update-card"><code class="docutils literal notranslate"><span class="pre">update_card</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id25">额外需求</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id26">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id27">返回值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28">示例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sned-ai-card"><code class="docutils literal notranslate"><span class="pre">sned_ai_card</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id29">额外需求</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id30">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id31">返回值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id32">示例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#create-group"><code class="docutils literal notranslate"><span class="pre">create_group</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id33">额外需求</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id34">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id35">返回值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id36">示例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#get-group"><code class="docutils literal notranslate"><span class="pre">get_group</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id37">额外需求</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id38">参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id39">返回值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id40">示例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id41">未完成...</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Dingraia Document</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">API usage guide</a></li>
+      <li class="breadcrumb-item active">Dingraia APIs</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/API/APIs/index.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dingraia-apis">
+<h1>Dingraia APIs<a class="headerlink" href="#dingraia-apis" title="Link to this heading"></a></h1>
+<section id="id1">
+<h2>注意事项<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>除非特殊说明，否则Dingraia默认为已经配置了 <code class="docutils literal notranslate"><span class="pre">config</span></code> 参数的完整版本，否则<strong>只可以</strong>发送 <code class="docutils literal notranslate"><span class="pre">WebHook</span></code> 消息</p>
+<p>对于已经配置好 <code class="docutils literal notranslate"><span class="pre">main.py</span></code> 并可以正常运行的情况，可以使用 <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">dingraia</span></code> 启用控制台模型，框架将自动加载app配置并载入大部分所需模块，无需再次导入</p>
+</section>
+<section id="init">
+<h2><code class="docutils literal notranslate"><span class="pre">__init__</span></code><a class="headerlink" href="#init" title="Link to this heading"></a></h2>
+<p>初始化 <code class="docutils literal notranslate"><span class="pre">Dingtalk</span></code> 类。</p>
+<section id="id2">
+<h3>参数<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: <code class="docutils literal notranslate"><span class="pre">dingraia.config.Config</span></code> 配置类实例，用于初始化 <code class="docutils literal notranslate"><span class="pre">Dingtalk</span></code> 类。</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>示例<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dingraia.config</span> <span class="kn">import</span> <span class="n">Config</span><span class="p">,</span> <span class="n">Bot</span><span class="p">,</span> <span class="n">CallBack</span><span class="p">,</span> <span class="n">Stream</span>
+<span class="kn">from</span> <span class="nn">dingraia.DingTalk</span> <span class="kn">import</span> <span class="n">Dingtalk</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dingtalk</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">Config</span><span class="p">(</span>
+    <span class="n">bot</span><span class="o">=</span><span class="n">Bot</span><span class="p">(</span><span class="s1">&#39;AppKey&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;AppSecret&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;CorpId&#39;</span><span class="p">),</span>
+    <span class="c1"># 机器人配置，必填</span>
+    <span class="n">event_callback</span><span class="o">=</span><span class="n">CallBack</span><span class="p">(</span><span class="s2">&quot;AesKey&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;Token&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;AppKey&quot;</span><span class="p">),</span>
+    <span class="c1"># 事件回调配置，可选</span>
+    <span class="n">stream</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">Stream</span><span class="p">(</span><span class="s1">&#39;AppKey&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;AppSecret&#39;</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="c1"># Stream配置，可选</span>
+    <span class="n">customStreamConnect</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="c1"># 自定义Stream连接器，可选</span>
+    <span class="n">autoBotConfig</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="c1"># 是否自动配置机器人，如果不想在使用Stream时自动配置机器人，可设置为False，可选</span>
+    <span class="n">useDatabase</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="c1"># 是否使用数据库，可选。（建议使用，数据库操作本身占用时间极小，远远小于网络连接）</span>
+    <span class="n">dataCacheTime</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span>
+    <span class="c1"># 数据缓存时间，可选。（建议适当调高，避免频繁访问，减少网络请求次数）</span>
+    <span class="n">webRequestHandlers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="c1"># Web请求处理器，可选。</span>
+    <span class="n">raise_for_api_error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="c1"># 是否在API调用失败时抛出API错误，可选。（建议开启）</span>
+<span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="send-message">
+<h2><code class="docutils literal notranslate"><span class="pre">send_message</span></code><a class="headerlink" href="#send-message" title="Link to this heading"></a></h2>
+<p>向指定用户发送消息。</p>
+<section id="id4">
+<h3>额外需求<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>发送到 OpenConversationId、发送文件、模板消息</p>
+<ul>
+<li><p>需要配置 <code class="docutils literal notranslate"><span class="pre">Dingtalk.config.bot</span></code></p></li>
+<li><p>API 消耗：<code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+</ul>
+</li>
+<li><p>发送到群聊、私聊、Webhook</p>
+<ul>
+<li><p>缓存过期</p>
+<ul>
+<li><p>需要配置 <code class="docutils literal notranslate"><span class="pre">Dingtalk.config.bot</span></code></p></li>
+<li><p>API 消耗：<code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">MessageChain</span></code> 中包含 <code class="docutils literal notranslate"><span class="pre">File</span></code> 对象</p>
+<ul>
+<li><p>需要配置 <code class="docutils literal notranslate"><span class="pre">Dingtalk.config.bot</span></code></p></li>
+<li><p>API 消耗：<code class="docutils literal notranslate"><span class="pre">1</span></code>×<code class="docutils literal notranslate"><span class="pre">File</span></code>数量</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id5">
+<h3>参数<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">target</span></code>: 要发送消息的目标，可以是 <code class="docutils literal notranslate"><span class="pre">Group</span></code>, <code class="docutils literal notranslate"><span class="pre">Member</span></code>, <code class="docutils literal notranslate"><span class="pre">OpenConversationId</span></code>, <code class="docutils literal notranslate"><span class="pre">Webhook</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*msg</span></code>: 要发送的对象，可以是 <code class="docutils literal notranslate"><span class="pre">MessageChain</span></code>, <code class="docutils literal notranslate"><span class="pre">File</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">list</span></code></p>
+<ul>
+<li><p>特别注意：如果 <code class="docutils literal notranslate"><span class="pre">msg</span></code> 是 <code class="docutils literal notranslate"><span class="pre">list</span></code>，则会被逐个执行并返回 <code class="docutils literal notranslate"><span class="pre">list</span></code> 结果</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id6">
+<h3>返回值<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dingraia.element.Response</span></code>: 发送消息的响应</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>示例<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dingraia.DingTalk</span> <span class="kn">import</span> <span class="n">Dingtalk</span>
+<span class="kn">from</span> <span class="nn">dingraia.element</span> <span class="kn">import</span> <span class="n">OpenConversationId</span>
+<span class="kn">from</span> <span class="nn">dingraia.message.chain</span> <span class="kn">import</span> <span class="n">MessageChain</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dingtalk</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">OpenConversationId</span><span class="p">(</span><span class="s1">&#39;cid1145149191810&#39;</span><span class="p">),</span> <span class="n">MessageChain</span><span class="p">(</span><span class="s1">&#39;Hello, world!&#39;</span><span class="p">))</span>
+<span class="c1"># 一定要配置config参数，否则只可以发送WebHook消息</span>
+<span class="c1"># 在缓存启用时，可以通过带 id 的 Group 实例发送消息，若过期则自动转为 API 发送</span>
+<span class="c1"># res = &lt;Response True&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="sendmessage">
+<h2><code class="docutils literal notranslate"><span class="pre">sendMessage</span></code><a class="headerlink" href="#sendmessage" title="Link to this heading"></a></h2>
+<p>对 <code class="docutils literal notranslate"><span class="pre">send_message</span></code> 的同步函数包装，使用方式同 <code class="docutils literal notranslate"><span class="pre">send_message</span></code>。</p>
+</section>
+<section id="recall-message">
+<h2><code class="docutils literal notranslate"><span class="pre">recall_message</span></code><a class="headerlink" href="#recall-message" title="Link to this heading"></a></h2>
+<p>撤回消息。</p>
+<section id="id8">
+<h3>额外需求<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<p>需要配置 <code class="docutils literal notranslate"><span class="pre">Dingtalk.config.bot</span></code></p>
+<p>API 消耗：<code class="docutils literal notranslate"><span class="pre">1</span></code></p>
+</section>
+<section id="id9">
+<h3>参数<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">message</span></code>: 撤回的消息对象，可以是 <code class="docutils literal notranslate"><span class="pre">Message</span></code>, <code class="docutils literal notranslate"><span class="pre">List[Message]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openConversationId</span></code>: 消息所在对话，可以是 <code class="docutils literal notranslate"><span class="pre">OpenConversationId</span></code>, <code class="docutils literal notranslate"><span class="pre">Group</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">processQueryKeys</span></code>: 消息的唯一标识，可以是 <code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">List[str]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">robotCode</span></code>: 机器人标识，可以是 <code class="docutils literal notranslate"><span class="pre">str</span></code>, 若配置了 <code class="docutils literal notranslate"><span class="pre">config</span></code> 则可不填</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inThreadTime</span></code>: 等待x秒后撤回，可以是 <code class="docutils literal notranslate"><span class="pre">int</span></code></p></li>
+</ul>
+</section>
+<section id="id10">
+<h3>返回值<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dict</span></code> 钉钉原始返回（可能以后会改为更适合的返回类型）</p></li>
+</ul>
+</section>
+<section id="id11">
+<h3>示例<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dingraia.DingTalk</span> <span class="kn">import</span> <span class="n">Dingtalk</span>
+<span class="kn">from</span> <span class="nn">dingraia.element</span> <span class="kn">import</span> <span class="n">OpenConversationId</span>
+<span class="kn">from</span> <span class="nn">dingraia.message.chain</span> <span class="kn">import</span> <span class="n">MessageChain</span>
+
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dingtalk</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
+<span class="n">send</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">OpenConversationId</span><span class="p">(</span><span class="s1">&#39;cid1145149191810&#39;</span><span class="p">),</span> <span class="n">MessageChain</span><span class="p">(</span><span class="s1">&#39;Hello, world!&#39;</span><span class="p">))</span>
+<span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">recall_message</span><span class="p">(</span><span class="n">send</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="send-ding">
+<h2><code class="docutils literal notranslate"><span class="pre">send_ding</span></code><a class="headerlink" href="#send-ding" title="Link to this heading"></a></h2>
+<p>发送 Ding 消息</p>
+<section id="id12">
+<h3>注意事项<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<p>本接口 <strong>尚未测试</strong></p>
+</section>
+<section id="id13">
+<h3>额外需求<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>钉钉专业版专属功能</strong></p></li>
+<li><p>需要配置 <code class="docutils literal notranslate"><span class="pre">Dingtalk.config.bot</span></code></p></li>
+<li><p>API 消耗：<code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+</ul>
+</section>
+<section id="id14">
+<h3>参数<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">targets</span></code>: 要发送到的人员列表，可以是 <code class="docutils literal notranslate"><span class="pre">Member</span></code>, <code class="docutils literal notranslate"><span class="pre">List[Member]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">content</span></code>: 要发送的消息内容，可以是 <code class="docutils literal notranslate"><span class="pre">str</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">remindType</span></code>: 提醒类型，可以是 <code class="docutils literal notranslate"><span class="pre">int</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code>: 应用内提醒</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code>: 短信提醒</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code>: 电话提醒</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id15">
+<h3>返回值<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dict</span></code> 钉钉原始返回（可能以后会改为更适合的返回类型）</p></li>
+</ul>
+</section>
+<section id="id16">
+<h3>示例<a class="headerlink" href="#id16" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dingraia.DingTalk</span> <span class="kn">import</span> <span class="n">Dingtalk</span>
+<span class="kn">from</span> <span class="nn">dingraia.element</span> <span class="kn">import</span> <span class="n">Member</span>
+
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dingtalk</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
+<span class="n">user</span> <span class="o">=</span> <span class="n">Member</span><span class="p">()</span>
+<span class="n">user</span><span class="o">.</span><span class="n">staffId</span> <span class="o">=</span> <span class="s1">&#39;1145149191810&#39;</span>
+<span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send_ding</span><span class="p">([</span><span class="n">user</span><span class="p">],</span> <span class="s1">&#39;Hello, world!&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="send-card">
+<h2><code class="docutils literal notranslate"><span class="pre">send_card</span></code><a class="headerlink" href="#send-card" title="Link to this heading"></a></h2>
+<p>发送卡片消息</p>
+<section id="id17">
+<h3>额外需求<a class="headerlink" href="#id17" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>需要配置 <code class="docutils literal notranslate"><span class="pre">Dingtalk.config.bot</span></code></p></li>
+<li><p>API 消耗：<code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+</ul>
+</section>
+<section id="id18">
+<h3>参数<a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">target</span></code>: 要发送到的目标，可以是 <code class="docutils literal notranslate"><span class="pre">OpenConversationId</span></code>, <code class="docutils literal notranslate"><span class="pre">Group</span></code>, <code class="docutils literal notranslate"><span class="pre">Member</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cardTemplateId</span></code>: 卡片模板 ID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cardData</span></code>: 卡片数据，字典类型（本接口默认将数据包裹在 <code class="docutils literal notranslate"><span class="pre">cardData</span></code>-&gt;<code class="docutils literal notranslate"><span class="pre">cardParamMap</span></code> 中）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">privateData</span></code>: 私有数据，可以是 <code class="docutils literal notranslate"><span class="pre">dict</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">PrivateDataBuilder</span></code> 实例（使用PrivateDataBuilder可以更方便地设置私有数据）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">supportForward</span></code>: 是否支持折叠，默认 <code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">callbackType</span></code>: 回调类型，可以是 <code class="docutils literal notranslate"><span class="pre">auto</span></code>, <code class="docutils literal notranslate"><span class="pre">Stream</span></code>, <code class="docutils literal notranslate"><span class="pre">HTTP</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outTrackId</span></code>: 外部追踪 ID，默认随机生成</p></li>
+</ul>
+</section>
+<section id="id19">
+<h3>返回值<a class="headerlink" href="#id19" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dingraia.element.CardResponse</span></code>: 包含原始卡片的公共数据、私有数据和追踪 ID</p></li>
+</ul>
+</section>
+<section id="id20">
+<h3>示例<a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dingraia.DingTalk</span> <span class="kn">import</span> <span class="n">Dingtalk</span>
+<span class="kn">from</span> <span class="nn">dingraia.element</span> <span class="kn">import</span> <span class="n">OpenConversationId</span>
+
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dingtalk</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send_card</span><span class="p">(</span>
+    <span class="n">OpenConversationId</span><span class="p">(</span><span class="s1">&#39;cid1145149191810&#39;</span><span class="p">),</span> 
+    <span class="s1">&#39;template_id&#39;</span><span class="p">,</span> 
+    <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Hello, world!&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="send-markdown-card">
+<h2><code class="docutils literal notranslate"><span class="pre">send_markdown_card</span></code><a class="headerlink" href="#send-markdown-card" title="Link to this heading"></a></h2>
+<p>发送 Markdown 卡片消息</p>
+<section id="id21">
+<h3>额外需求<a class="headerlink" href="#id21" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>需要配置 <code class="docutils literal notranslate"><span class="pre">Dingtalk.config.bot</span></code></p></li>
+<li><p>API 消耗：<code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+</ul>
+</section>
+<section id="id22">
+<h3>参数<a class="headerlink" href="#id22" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">target</span></code>: 要发送到的目标，可以是 <code class="docutils literal notranslate"><span class="pre">OpenConversationId</span></code>, <code class="docutils literal notranslate"><span class="pre">Group</span></code>, <code class="docutils literal notranslate"><span class="pre">Member</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">markdown</span></code>: Markdown 内容，必须是 <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> 实例</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logo</span></code>: 卡片 logo，可以是 <code class="docutils literal notranslate"><span class="pre">File</span></code> 实例或者 <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> 开头的图片 URL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outTrackId</span></code>: 外部追踪 ID，默认随机生成</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">supportForward</span></code>: 是否支持折叠，默认 <code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
+</ul>
+</section>
+<section id="id23">
+<h3>返回值<a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dingraia.element.CardResponse</span></code>: 包含原始卡片的公共数据、私有数据和追踪 ID</p></li>
+</ul>
+</section>
+<section id="id24">
+<h3>示例<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dingraia.DingTalk</span> <span class="kn">import</span> <span class="n">Dingtalk</span>
+<span class="kn">from</span> <span class="nn">dingraia.element</span> <span class="kn">import</span> <span class="n">OpenConversationId</span>
+<span class="kn">from</span> <span class="nn">dingraia.message.element</span> <span class="kn">import</span> <span class="n">Markdown</span>
+
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dingtalk</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send_markdown_card</span><span class="p">(</span>
+    <span class="n">OpenConversationId</span><span class="p">(</span><span class="s1">&#39;cid1145149191810&#39;</span><span class="p">),</span> 
+    <span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;## Hello, world!&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;标题&#39;</span><span class="p">),</span> 
+    <span class="s1">&#39;@https://example.com/logo.png&#39;</span>  <span class="c1"># 也可以使用 File 实例</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="update-card">
+<h2><code class="docutils literal notranslate"><span class="pre">update_card</span></code><a class="headerlink" href="#update-card" title="Link to this heading"></a></h2>
+<p>更新卡片</p>
+<section id="id25">
+<h3>额外需求<a class="headerlink" href="#id25" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>需要配置 <code class="docutils literal notranslate"><span class="pre">Dingtalk.config.bot</span></code></p></li>
+<li><p>API 消耗：<code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+</ul>
+</section>
+<section id="id26">
+<h3>参数<a class="headerlink" href="#id26" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>        <span class="n">outTrackId</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">CardResponse</span><span class="p">],</span>
+        <span class="n">cardParamData</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="n">Markdown</span><span class="p">],</span>
+        <span class="n">privateData</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="n">PrivateDataBuilder</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">outTrackId</span></code>: 卡片的外部追踪 ID，可以是 <code class="docutils literal notranslate"><span class="pre">str</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">CardResponse</span></code> 实例</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cardParamData</span></code>: 卡片数据，可以是 <code class="docutils literal notranslate"><span class="pre">dict</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> 实例</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">privateData</span></code>: 私有数据，可以是 <code class="docutils literal notranslate"><span class="pre">dict</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">PrivateDataBuilder</span></code> 实例（使用PrivateDataBuilder可以更方便地设置私有数据）</p></li>
+</ul>
+</section>
+<section id="id27">
+<h3>返回值<a class="headerlink" href="#id27" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dict</span></code> 钉钉原始返回（可能以后会改为更适合的返回类型）</p></li>
+</ul>
+</section>
+<section id="id28">
+<h3>示例<a class="headerlink" href="#id28" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dingraia.DingTalk</span> <span class="kn">import</span> <span class="n">Dingtalk</span>
+<span class="kn">from</span> <span class="nn">dingraia.element</span> <span class="kn">import</span> <span class="n">OpenConversationId</span>
+<span class="kn">from</span> <span class="nn">dingraia.message.element</span> <span class="kn">import</span> <span class="n">Markdown</span>
+
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dingtalk</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send_markdown_card</span><span class="p">(</span>
+    <span class="s1">&#39;out_track_id&#39;</span><span class="p">,</span> 
+    <span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;## Hello, world!&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;标题&#39;</span><span class="p">),</span> 
+    <span class="p">{</span><span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">update_card</span><span class="p">(</span>
+    <span class="n">res</span><span class="p">,</span> 
+    <span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;## Updated&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;标题&#39;</span><span class="p">),</span> 
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="sned-ai-card">
+<h2><code class="docutils literal notranslate"><span class="pre">sned_ai_card</span></code><a class="headerlink" href="#sned-ai-card" title="Link to this heading"></a></h2>
+<p>发送 AI 卡片消息</p>
+<section id="id29">
+<h3>额外需求<a class="headerlink" href="#id29" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>需要配置 <code class="docutils literal notranslate"><span class="pre">Dingtalk.config.bot</span></code></p></li>
+<li><p>API 消耗：<code class="docutils literal notranslate"><span class="pre">3+</span></code>(根据 AI 卡片更新的频率判定)</p></li>
+</ul>
+</section>
+<section id="id30">
+<h3>参数<a class="headerlink" href="#id30" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">target</span></code>: 要发送到的目标，可以是 <code class="docutils literal notranslate"><span class="pre">OpenConversationId</span></code>, <code class="docutils literal notranslate"><span class="pre">Group</span></code>, <code class="docutils literal notranslate"><span class="pre">Member</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cardTemplateId</span></code>: 卡片模板 ID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">card</span></code>: 卡片数据，<code class="docutils literal notranslate"><span class="pre">AICard</span></code> 实例</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">update_limit</span></code>: 卡片更新频率限制，单位为秒，默认 <code class="docutils literal notranslate"><span class="pre">0</span></code> 表示不限制</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">key</span></code>: 卡片数据在卡片模板中的键名，默认 <code class="docutils literal notranslate"><span class="pre">content</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outTrackId</span></code>: 外部追踪 ID，默认随机生成</p></li>
+</ul>
+</section>
+<section id="id31">
+<h3>返回值<a class="headerlink" href="#id31" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dingraia.element.CardResponse</span></code>: 包含原始卡片的公共数据、私有数据和追踪 ID</p></li>
+</ul>
+</section>
+<section id="id32">
+<h3>示例<a class="headerlink" href="#id32" title="Link to this heading"></a></h3>
+<p>由于 AI 卡片配置较为复杂，请参考 <code class="docutils literal notranslate"><span class="pre">example_module.AICard.py</span></code> 中的示例代码</p>
+<p>如果你的 AI API接口支持 POST 方式的流式输出，可以使用示例代码中的方法进行快速流式输出</p>
+</section>
+</section>
+<section id="create-group">
+<h2><code class="docutils literal notranslate"><span class="pre">create_group</span></code><a class="headerlink" href="#create-group" title="Link to this heading"></a></h2>
+<p>创建群聊</p>
+<section id="id33">
+<h3>额外需求<a class="headerlink" href="#id33" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>需要配置 <code class="docutils literal notranslate"><span class="pre">Dingtalk.config.bot</span></code></p></li>
+<li><p>API 消耗：<code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+</ul>
+</section>
+<section id="id34">
+<h3>参数<a class="headerlink" href="#id34" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: 群聊名称</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">templateId</span></code>: 群聊模板 ID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ownerUserId</span></code>: 群主 ID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">icon</span></code>: 群聊头像，可以是 <code class="docutils literal notranslate"><span class="pre">File</span></code> 实例或者 <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> 开头的图片 URL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">userIds</span></code>: 群成员 ID 列表，可以是 <code class="docutils literal notranslate"><span class="pre">Member</span></code>, <code class="docutils literal notranslate"><span class="pre">List[Member]</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">List[str]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">subAdminIds</span></code>: 群管理员 ID 列表，可以是 <code class="docutils literal notranslate"><span class="pre">Member</span></code>, <code class="docutils literal notranslate"><span class="pre">List[Member]</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">List[str]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">showHistory</span></code>: 是否展示群历史消息，默认 <code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validation</span></code>: 是否开启群验证，默认 <code class="docutils literal notranslate"><span class="pre">True</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">searchable</span></code>: 是否允许群搜索，默认 <code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UUID</span></code>: 唯一标识符 ID，默认随机生成</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">access_token</span></code>: 企业的 access_token，默认 <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
+</ul>
+</section>
+<section id="id35">
+<h3>返回值<a class="headerlink" href="#id35" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dict</span></code> 钉钉原始返回（可能以后会改为更适合的返回类型）</p></li>
+</ul>
+</section>
+<section id="id36">
+<h3>示例<a class="headerlink" href="#id36" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dingraia.DingTalk</span> <span class="kn">import</span> <span class="n">Dingtalk</span>
+<span class="kn">from</span> <span class="nn">dingraia.element</span> <span class="kn">import</span> <span class="n">Member</span>
+
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dingtalk</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
+<span class="n">user1</span> <span class="o">=</span> <span class="n">Member</span><span class="p">()</span>
+<span class="n">user1</span><span class="o">.</span><span class="n">staffId</span> <span class="o">=</span> <span class="s1">&#39;1145149191810&#39;</span>
+<span class="n">user2</span> <span class="o">=</span> <span class="n">Member</span><span class="p">()</span>
+<span class="n">user2</span><span class="o">.</span><span class="n">staffId</span> <span class="o">=</span> <span class="s1">&#39;1145149191811&#39;</span>
+<span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">create_group</span><span class="p">(</span>
+    <span class="s1">&#39;测试群聊&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;template_id&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;owner_id&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;@mediaId&#39;</span><span class="p">,</span> 
+    <span class="p">[</span><span class="n">user1</span><span class="p">,</span> <span class="n">user2</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="get-group">
+<h2><code class="docutils literal notranslate"><span class="pre">get_group</span></code><a class="headerlink" href="#get-group" title="Link to this heading"></a></h2>
+<p>获取群聊信息，包含群成员列表</p>
+<section id="id37">
+<h3>额外需求<a class="headerlink" href="#id37" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>群聊必须是场景群或者启用酷应用的群聊</p></li>
+<li><p>需要配置 <code class="docutils literal notranslate"><span class="pre">Dingtalk.config.bot</span></code></p></li>
+<li><p>API 消耗：<code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+</ul>
+</section>
+<section id="id38">
+<h3>参数<a class="headerlink" href="#id38" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OpenConversationId</span></code>: 群聊 ID，可以是 <code class="docutils literal notranslate"><span class="pre">OpenConversationId</span></code>, <code class="docutils literal notranslate"><span class="pre">Group</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">access_token</span></code>: 企业的 access_token，默认 <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
+</ul>
+</section>
+<section id="id39">
+<h3>返回值<a class="headerlink" href="#id39" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dict</span></code> 钉钉原始返回（可能以后会改为更适合的返回类型）</p></li>
+</ul>
+</section>
+<section id="id40">
+<h3>示例<a class="headerlink" href="#id40" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dingraia.DingTalk</span> <span class="kn">import</span> <span class="n">Dingtalk</span>
+<span class="kn">from</span> <span class="nn">dingraia.element</span> <span class="kn">import</span> <span class="n">OpenConversationId</span>
+
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dingtalk</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="n">OpenConversationId</span><span class="p">(</span><span class="s1">&#39;cid1145149191810&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="id41">
+<h1>未完成...<a class="headerlink" href="#id41" title="Link to this heading"></a></h1>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="../Summary/index.html" class="btn btn-neutral float-left" title="功能一览" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024, MeiHuaGuangShuo。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>功能一览 &mdash; Dingraia Document v1.0 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5a3fd9cb"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Dingraia Document
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Introduce/index.html">Introduce</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Dingraia Document</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">功能一览</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/API/Summary/index.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>功能一览<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>应答机制</p>
+<ul>
+<li><p>HTTP 回调</p></li>
+<li><p>Stream 回调</p></li>
+<li><p>OutGoing..? (过时，不再专门支持)</p></li>
+</ul>
+</li>
+<li><p>使用方式</p>
+<ul>
+<li><p>脚本运行</p>
+<ul>
+<li><p>机器人阻塞模式</p></li>
+<li><p>单 API 模式 (需要额外配置)</p></li>
+</ul>
+</li>
+<li><p>控制台模式</p></li>
+</ul>
+</li>
+<li><p>群聊功能</p>
+<ul>
+<li><p>发送消息</p>
+<ul>
+<li><p>文字</p></li>
+<li><p>Markdown</p></li>
+<li><p>ActionCard</p></li>
+<li><p>FeedCard</p></li>
+</ul>
+</li>
+<li><p>发送文件</p>
+<ul>
+<li><p>普通文件</p></li>
+<li><p>图片</p></li>
+<li><p>音频</p></li>
+<li><p>视频</p></li>
+</ul>
+</li>
+<li><p>撤回消息 (钉钉限制仅通过API发送的文件才可以撤回)</p></li>
+<li><p>发送互动卡片 (自行构造JSON数据)</p>
+<ul>
+<li><p>预设 Markdown 卡片</p></li>
+</ul>
+</li>
+<li><p>改变卡片内容 (自行构造JSON数据)</p></li>
+<li><p>发送 AI 卡片，支持流式更新 (需要配置)</p></li>
+<li><p>创建群</p></li>
+<li><p>获取群消息</p></li>
+<li><p>获取部门消息</p></li>
+<li><p>获取用户详细信息</p></li>
+<li><p>删除用户 (组织)</p></li>
+<li><p>创建用户 (组织)</p></li>
+<li><p>更新用户信息 (组织)</p></li>
+<li><p>复制群 <strong>(未来可能移除)</strong></p></li>
+<li><p>更新群信息</p>
+<ul>
+<li><p>同源功能</p>
+<ul>
+<li><p>更新群标题</p></li>
+<li><p>改变群主</p></li>
+<li><p>全体禁言/解禁</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>解散群 (伪)</p></li>
+<li><p>踢出用户 (群)</p></li>
+<li><p>添加用户 (群)</p></li>
+<li><p>设置/取消管理员 (群)</p></li>
+<li><p>禁言用户/解除禁言用户 (群)</p></li>
+<li><p>设置机器人离线卡片 (Stream 独占)</p></li>
+<li><p>手动上传文件</p></li>
+<li><p>下载机器人聊天文件</p></li>
+</ul>
+</li>
+<li><p>特别功能</p>
+<ul>
+<li><p>HTTP &amp; Stream 同时运行 (不建议，可能会导致需要API请求的功能无法正常使用)</p></li>
+<li><p>运行周期内上传文件缓存</p></li>
+<li><p>即时重载 Debug 模式</p></li>
+<li><p><strong>临时</strong>切换全局<strong>默认</strong> <code class="docutils literal notranslate"><span class="pre">AccessToken</span></code></p></li>
+<li><p>用户/群组信息缓存</p></li>
+<li><p>~~即时载入/卸载模块~~ (有Bug，仅可载入，无法卸载)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024, MeiHuaGuangShuo。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
