@@ -246,7 +246,7 @@ app.prepare()
 res = await app.send_markdown_card(
     OpenConversationId('cid1145149191810'), 
     Markdown('## Hello, world!', title='标题'), 
-    '@https://example.com/logo.png'  # 也可以使用 File 实例
+    '@mediaId'  # 也可以使用 File 实例
 )
 ```
 
