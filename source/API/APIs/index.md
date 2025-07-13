@@ -6,6 +6,82 @@
 
 对于已经配置好 `main.py` 并可以正常运行的情况，可以使用 `python -m dingraia` 启用控制台模式，框架将自动加载app配置并载入大部分所需模块，无需再次导入
 
+## 模块说明
+
+- [Model模块](model.md) - 数据模型类
+- [Saya模块](saya.md) - 插件系统
+- [AI API模块](aiapi.md) - AI服务集成
+
+## 基础类
+
+### Dingtalk
+
+主要的应用类,用于处理所有钉钉相关的操作。
+
+#### 属性
+
+- `config`: 配置对象
+- `access_token`: 当前的访问令牌
+- `running_mode`: 当前运行模式
+- `clientSession`: HTTP客户端会话
+- `loop`: 事件循环
+
+#### 方法概览
+
+##### 消息相关
+- `send_message()`: 发送消息
+- `sendMessage()`: 同步发送消息
+- `recall_message()`: 撤回消息
+- `send_ding()`: 发送DING消息
+- `send_card()`: 发送卡片消息
+- `send_markdown_card()`: 发送Markdown卡片
+- `send_ai_card()`: 发送AI卡片
+- `send_ai_message()`: 发送AI消息
+- `update_card()`: 更新卡片内容
+
+##### 群组管理
+- `create_group()`: 创建群组
+- `get_group()`: 获取群组信息
+- `update_group()`: 更新群组信息
+- `disband_group()`: 解散群组
+- `mirror_group()`: 复制群组
+- `change_group_title()`: 修改群名
+- `change_group_owner()`: 更换群主
+- `mute_all()`: 全员禁言
+- `unmute_all()`: 解除全员禁言
+
+##### 成员管理
+- `add_member()`: 添加成员
+- `kick_member()`: 移除成员
+- `set_admin()`: 设置管理员
+- `mute_member()`: 禁言成员
+- `unmute_member()`: 解除成员禁言
+
+##### 组织管理
+- `get_depts()`: 获取部门列表
+- `get_dept_users()`: 获取部门成员
+- `get_user()`: 获取用户信息
+- `create_user()`: 创建用户
+- `remove_user()`: 删除用户
+- `update_user()`: 更新用户信息
+
+##### 文件处理
+- `upload_file()`: 上传文件
+- `download_file()`: 下载文件
+
+##### 认证相关
+- `get_user_access_token()`: 获取用户访问令牌
+- `get_login_url()`: 获取登录URL
+- `oauth_login()`: OAuth登录
+- `check_login_status()`: 检查登录状态
+
+##### 运行控制
+- `start()`: 启动应用
+- `stop()`: 停止应用
+- `create_task()`: 创建异步任务
+
+## 详细API说明
+
 ## `__init__`
 
 初始化 `Dingtalk` 类。
@@ -1412,7 +1488,335 @@ async def init(app: Dingtalk):
 - `target` （已更新）
 
 
-# 未完成...
+
+## 群组管理API
+
+### `create_group`
+
+创建群组
+
+#### 额外需求
+- 需要配置 `Dingtalk.config.bot`
+- API 消耗：`2`
+
+#### 参数
+- `name`: 群名称，`str`类型
+- `owner`: 群主，可以是`Member`实例或员工ID(`str`)
+- `useridlist`: 初始成员列表，`List[str]`类型
+- `showHistory`: 是否显示历史消息，`bool`类型，默认`True`
+- `searchable`: 是否可搜索，`bool`类型，默认`True`
+- `validationType`: 验证类型，`int`类型
+- `mentionAllAuthority`: @所有人权限，`int`类型
+- `managementType`: 管理类型，`int`类型
+- `chatBannedType`: 禁言类型，`int`类型
+
+#### 返回值
+- `dingraia.model.Group`: 创建的群组对象
+
+#### 示例
+```python
+from dingraia.DingTalk import Dingtalk
+from dingraia.element import Member
+
+app = Dingtalk()
+app.prepare()
+owner = Member()
+owner.staffId = 'manager123'
+members = ['user1', 'user2', 'user3']
+group = await app.create_group(
+    name='测试群组',
+    owner=owner,
+    useridlist=members,
+    showHistory=True
+)
+```
+
+### `update_card`
+
+更新已发送的卡片内容。
+
+#### 额外需求
+- 需要配置 `Dingtalk.config.bot`
+- API 消耗：`1`
+
+#### 参数
+- `outTrackId`: 卡片的追踪ID,可以是字符串或CardResponse对象
+- `cardParamData`: 新的卡片数据,可以是字典或Markdown对象
+- `privateData`: 新的私有数据,可以是字典或PrivateDataBuilder对象
+
+#### 返回值
+- `dict`: 钉钉API的响应数据
+
+#### 示例
+```python
+from dingraia.DingTalk import Dingtalk
+from dingraia.message.element import Markdown
+
+app = Dingtalk()
+app.prepare()
+
+# 发送卡片
+card = await app.send_markdown_card(
+    target,
+    Markdown("原始内容", "标题")
+)
+
+# 更新卡片
+await app.update_card(
+    card.outTrackId,
+    Markdown("更新后的内容", "新标题")
+)
+```
+
+### `get_depts`
+
+获取组织的部门列表。
+
+#### 额外需求
+- 需要配置 `Dingtalk.config.bot`
+- API 消耗：`1`
+
+#### 参数
+- `deptId`: 部门ID,默认为1(根部门)
+- `access_token`: 可选的访问令牌
+
+#### 返回值
+- `list`: 部门列表
+
+#### 示例
+```python
+from dingraia.DingTalk import Dingtalk
+
+app = Dingtalk()
+app.prepare()
+
+# 获取根部门下的所有部门
+depts = await app.get_depts()
+
+# 获取指定部门下的子部门
+sub_depts = await app.get_depts("123456")
+```
+
+### `get_dept_users`
+
+获取部门下的用户列表。
+
+#### 额外需求
+- 需要配置 `Dingtalk.config.bot`
+- API 消耗：`1`
+
+#### 参数
+- `deptId`: 部门ID,默认为"1"(根部门)
+- `access_token`: 可选的访问令牌
+
+#### 返回值
+- `list`: 用户ID列表
+
+#### 示例
+```python
+from dingraia.DingTalk import Dingtalk
+
+app = Dingtalk()
+app.prepare()
+
+# 获取部门用户
+users = await app.get_dept_users("123456")
+```
+
+### `create_user`
+
+在组织中创建新用户。
+
+#### 额外需求
+- 需要配置 `Dingtalk.config.bot`
+- API 消耗：`1`
+
+#### 参数
+- `name`: 用户名称
+- `mobilePhone`: 手机号码
+- `deptIds`: 所属部门ID列表
+- `userId`: 可选的用户ID
+- `hidePhone`: 是否隐藏手机号
+- `jobNumber`: 工号
+- `positionName`: 职位名称
+- `personalEmail`: 个人邮箱
+- `organizeEmail`: 企业邮箱
+- 其他可选参数...
+
+#### 返回值
+- `dict`: 创建结果
+
+#### 示例
+```python
+from dingraia.DingTalk import Dingtalk
+
+app = Dingtalk()
+app.prepare()
+
+# 创建用户
+result = await app.create_user(
+    name="张三",
+    mobilePhone="13800138000",
+    deptIds=["1"],
+    jobNumber="001",
+    positionName="工程师"
+)
+```
+
+### `update_user`
+
+更新用户信息。
+
+#### 额外需求
+- 需要配置 `Dingtalk.config.bot`
+- API 消耗：`1`
+
+#### 参数
+- `userId`: 用户ID
+- `name`: 新的用户名
+- `hide_mobile`: 是否隐藏手机号
+- `telephone`: 新的电话号码
+- `job_number`: 新的工号
+- 其他可选参数...
+
+#### 返回值
+- `dict`: 更新结果
+
+#### 示例
+```python
+from dingraia.DingTalk import Dingtalk
+
+app = Dingtalk()
+app.prepare()
+
+# 更新用户信息
+result = await app.update_user(
+    userId="123456",
+    name="李四",
+    job_number="002"
+)
+```
+
+### `remove_user`
+
+从组织中移除用户。
+
+#### 额外需求
+- 需要配置 `Dingtalk.config.bot`
+- API 消耗：`1`
+
+#### 参数
+- `userStaffId`: 用户的staffId
+- `access_token`: 可选的访问令牌
+
+#### 返回值
+- `dict`: 删除结果
+
+#### 示例
+```python
+from dingraia.DingTalk import Dingtalk
+
+app = Dingtalk()
+app.prepare()
+
+# 移除用户
+result = await app.remove_user("123456")
+```
+
+### `set_off_duty_prompt`
+
+设置机器人离线时的提示信息。
+
+#### 额外需求
+- 需要配置 `Dingtalk.config.bot`
+- API 消耗：`1`
+
+#### 参数
+- `text`: 提示文本
+- `title`: 卡片标题
+- `logo`: 卡片logo
+- `robotCode`: 可选的机器人代码
+- `access_token`: 可选的访问令牌
+
+#### 返回值
+- `dict`: 设置结果
+
+#### 示例
+```python
+from dingraia.DingTalk import Dingtalk
+
+app = Dingtalk()
+app.prepare()
+
+# 设置离线提示
+result = await app.set_off_duty_prompt(
+    text="我现在不在线,稍后回复您",
+    title="离线提示"
+)
+```
+
+### `upload_file`
+
+上传文件到钉钉服务器。
+
+#### 额外需求
+- 需要配置 `Dingtalk.config.bot`
+- API 消耗：`1`
+
+#### 参数
+- `file`: 要上传的文件,可以是路径、URL或File对象
+
+#### 返回值
+- `File`: 包含mediaId的File对象
+
+#### 示例
+```python
+from dingraia.DingTalk import Dingtalk
+from dingraia.element import File
+
+app = Dingtalk()
+app.prepare()
+
+# 上传本地文件
+file = await app.upload_file("path/to/file.txt")
+
+# 上传网络文件
+file = await app.upload_file("https://example.com/file.txt")
+
+# 上传File对象
+file_obj = File()
+file_obj.file = open("file.txt", "rb")
+file = await app.upload_file(file_obj)
+```
+
+### `download_file`
+
+下载机器人接收到的文件。
+
+#### 额外需求
+- 需要配置 `Dingtalk.config.bot`
+- API 消耗：`1`
+
+#### 参数
+- `downloadCode`: 文件的下载码
+- `path`: 保存文件的路径
+
+#### 返回值
+- `bool`: 下载是否成功
+
+#### 示例
+```python
+from dingraia.DingTalk import Dingtalk
+
+app = Dingtalk()
+app.prepare()
+
+# 下载文件
+success = await app.download_file(
+    "download_code",
+    "path/to/save/file.txt"
+)
+```
 
 
 
