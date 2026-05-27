@@ -9,6 +9,9 @@
 ## 模块说明
 
 - [Model模块](model.md) - 数据模型类
+- [消息元素模块](message.md) - 消息元素类
+- [事件模块](event.md) - 事件系统
+- [卡片模块](card.md) - 卡片消息
 - [Saya模块](saya.md) - 插件系统
 - [AI API模块](aiapi.md) - AI服务集成
 

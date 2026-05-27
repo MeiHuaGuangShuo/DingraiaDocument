@@ -1,8 +1,7 @@
-API usage guide
-===============
+API 参考
+========
 
-This is the API usage guide for Dingraia.
-
+本章节提供了 Dingraia 框架的完整 API 文档。
 
 .. toctree::
    :maxdepth: 2
